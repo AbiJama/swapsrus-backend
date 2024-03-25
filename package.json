@@ -4,7 +4,9 @@
   "description": "This is our backend for our app Swaps'R'Us",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
+    "test": "mocha tests/**/*.js --exit --recursive --timeout 60000 --file ./tests/test-setup.js",
+    "pretest": "node scripts/create-database.js test",
+    "posttest": "node scripts/drop-database.js test",
     "start": "nodemon -r dotenv/config index.js",
     "prestart": "node scripts/create-database.js"
   },
@@ -15,7 +17,10 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
+    "chai": "^5.1.0",
     "dotenv": "^16.4.5",
-    "nodemon": "^3.1.0"
+    "mocha": "^10.3.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
   }
 }
