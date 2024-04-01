@@ -28,6 +28,10 @@ module.exports = (connection, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+        image: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		}
 	};
 	const ToyModel = connection.define("Toy", schema);
 	return ToyModel;

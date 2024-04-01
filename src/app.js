@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require('cors')
 const app = express();
 const { createUser, getUsers, getUserById, deleteUserById } = require("./controllers/user");
 const { User, Toy } = require("./models");
 const { createToy, getAllToys, deleteToyById, getToyById } = require("./controllers/toy");
 
+app.use(cors())
 app.use(express.json());
 
 app.post("/users", createUser);

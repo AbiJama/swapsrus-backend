@@ -29,6 +29,7 @@ describe("/users/:id/toys", () => {
 					postcode: "IG1",
 					description: "30cm doll with milk bottle",
 					borrowPeriod: "2 weeks",
+                    image: "doll"
 				});
 				const newUserRecord = await User.findByPk(response.body.id, {
 					raw: true,
