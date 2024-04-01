@@ -23,6 +23,9 @@ const getUserById = async (req, res) => {
     const {id} = req.params
     try {
         const getUserRecord = await User.findByPk(id)
+        if(!getUserRecord){
+            return res.status(404).json({error: "The user could not be found."})
+        }
         res.status(200).json(getUserRecord)
     }catch(error){
         res.status(500).json(error)
@@ -34,7 +37,9 @@ const deleteUserById = async (req, res) => {
     try {
         const currentUserRecord = await User.findByPk(id)
         const deletedUser = await User.destroy({where: {id:id}})
-
+        if(!currentUserRecord){
+            return res.status(404).json({error: "The user could not be found."})
+        }
         res.status(204).json(deletedUser)
     }catch(error){
         res.status(500).json(error)

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { createUser, getUsers, getUserById, deleteUserById } = require("./controllers/user");
 const { User, Toy } = require("./models");
+const { createToy, getAllToys, deleteToyById, getToyById } = require("./controllers/toy");
 
 app.use(express.json());
 
@@ -12,5 +13,14 @@ app.get("/users", getUsers)
 app.get("/users/:id", getUserById)
 
 app.delete("/users/:id", deleteUserById)
+
+
+app.post("/users/:id/toys", createToy)
+
+app.get("/toys", getAllToys)
+
+app.get("/toys/:id", getToyById)
+
+app.delete("/toys/:id", deleteToyById)
 
 module.exports = app;

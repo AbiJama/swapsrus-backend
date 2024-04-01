@@ -9,7 +9,7 @@ module.exports = (connection, DataTypes) => {
 			allowNull: false,
 			validate: {
 				isEmail: true,
-				len: [8, 15],
+				len: [8, 150],
 			},
 		},
         area: {
