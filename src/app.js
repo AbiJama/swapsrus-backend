@@ -17,7 +17,7 @@ app.get("/users/:id", getUserById)
 app.delete("/users/:id", deleteUserById)
 
 
-app.post("/users/:id/toys", createToy)
+app.post("/toys", createToy)
 
 app.get("/toys", getAllToys)
 

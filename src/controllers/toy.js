@@ -32,13 +32,14 @@ const getToyById = async (req, res) => {
 }
 
 const deleteToyById = async (req, res) => {
-    const {id} = id
+    const {id} = req.params
     try {
         const currentToyRecord = await Toy.findByPk(id)
         if(!currentToyRecord){
             return res.status(404).json({error: "The id could not be found."})
         }
         const deletedToyRecord = await Toy.destroy({where:{id:id}})
+        res.status(204).json({message: `Toy ${id} deleted`})
     }catch(error){
         res.status(500).json(error)
     }
