@@ -15,7 +15,12 @@ module.exports = (connection, DataTypes) => {
         area: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+		uid: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		}
+
 	};
     const UserModel = connection.define('User', schema)
     return UserModel

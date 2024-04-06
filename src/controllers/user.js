@@ -32,6 +32,20 @@ const getUserById = async (req, res) => {
     }
 }
 
+const getUserByUid = async (req, res) => {
+    const {uid} = req.params
+    try {
+        const getUserRecord = await User.findOne({ where: {uid: uid} })
+        if(!getUserRecord){
+            return res.status(404).json({error: "The user could not be found."})
+        }
+        res.status(200).json(getUserRecord)
+    }catch(error){
+        console.log(error)
+        res.status(500).json(error)
+    }
+}
+
 const deleteUserById = async (req, res) => {
     const {id} = req.params
     try {
@@ -45,4 +59,4 @@ const deleteUserById = async (req, res) => {
         res.status(500).json(error)
     }
 }
-module.exports = {createUser, getUsers, getUserById, deleteUserById}
+module.exports = {createUser, getUsers, getUserById, getUserByUid, deleteUserById}
