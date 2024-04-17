@@ -1,4 +1,4 @@
-const {Toy} = require('../models')
+const {Toy, user} = require('../models')
 
 const createToy = async (req, res) => {
     try {
@@ -9,18 +9,19 @@ const createToy = async (req, res) => {
     }
 }
 const createToyByUserUid = async (req, res) => {
-    const {uid} = req.params
+    const { Uid } = req.params;
     try {
-        const createToyRecord = await User.findOne({ where: {uid: uid} })
-        if(!createToyRecord){
-            return res.status(404).json({error: "Toy not added."})
+        const createUserRecord = await User.findOne({ where: { uid: uid } });
+        if (!createUserRecord) {
+            return res.status(404).json({ error: "User not found." });
         }
-        res.status(200).json(createToyRecord)
-    }catch(error){
-        console.log(error)
-        res.status(500).json(error)
+        const createToyRecord = await Toy.create({ ...req.body, userUid: uid });
+        res.status(201).json(createToyRecord);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
     }
-}
+};
 
 
 const getAllToys = async (req, res) => {

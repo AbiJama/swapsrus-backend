@@ -37,6 +37,10 @@ module.exports = (connection, DataTypes) => {
         image: {
 			type: DataTypes.STRING,
 			allowNull: true,
+		},
+		userUid: {
+			type: DataTypes.STRING,
+			allowNull: true,
 		}
 	};
 	const ToyModel = connection.define("Toy", schema);

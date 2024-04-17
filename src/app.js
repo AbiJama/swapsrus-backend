@@ -5,6 +5,14 @@ const { createUser, getUsers, getUserById, getUserByUid, deleteUserById } = requ
 const { User, Toy } = require("./models");
 const { createToy, createToyByUserUid, getAllToys, deleteToyByUserUId, getToyById, getToyByUserUid } = require("./controllers/toy");
 
+const admin = require("firebase-admin");
+
+const serviceAccount = require("../firebase-admin-config.json")
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
 app.use(cors())
 app.use(express.json());
 
@@ -19,7 +27,7 @@ app.get("/users/uid/:uid", getUserByUid)
 app.delete("/users/:id", deleteUserById)
 
 
-app.post("/toys", createToy)
+app.post("/toys/user/:uid", createToy)
 
 app.post("/toys/users/uid/:/uid", createToyByUserUid)
 
