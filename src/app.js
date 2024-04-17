@@ -3,7 +3,7 @@ const cors = require('cors')
 const app = express();
 const { createUser, getUsers, getUserById, getUserByUid, deleteUserById } = require("./controllers/user");
 const { User, Toy } = require("./models");
-const { createToy, createToyByUserUid, getAllToys, deleteToyByUserUId, getToyById, getToyByUserUid } = require("./controllers/toy");
+const { createToy, createToyByUserUid, getAllToys, deleteToyById, getToyById, getToyByUserUid } = require("./controllers/toy");
 
 const admin = require("firebase-admin");
 
@@ -37,6 +37,6 @@ app.get("/toys/:id", getToyById)
 
 app.get("./toys/users/uid/:uid", getToyByUserUid)
 
-app.delete("/toys/:id", deleteToyByUserUId)
+app.delete("/toys/:id", deleteToyById)
 
 module.exports = app;

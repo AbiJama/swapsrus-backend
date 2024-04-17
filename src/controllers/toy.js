@@ -59,15 +59,14 @@ const getToyByUserUid = async (req, res) => {
     }
 }
 
-
-const deleteToyByUserUId = async (req, res) => {
+const deleteToyById = async (req, res) => {
     const { id } = req.params;
     try {
         const currentToyRecord = await Toy.findByPk(id);
         if (!currentToyRecord) {
             return res.status(404).json({ error: "The id could not be found." });
         }
-        await Toy.destroy({ where: { UserUid: id } }); 
+        await Toy.destroy({ where: { id: id } }); 
         res.status(204).send(); 
     } catch (error) {
         res.status(500).json(error);
@@ -76,4 +75,5 @@ const deleteToyByUserUId = async (req, res) => {
 
 
 
-module.exports = {createToy,createToyByUserUid, getAllToys, getToyById, deleteToyByUserUId, getToyByUserUid }
+
+module.exports = {createToy,createToyByUserUid, getAllToys, getToyById, deleteToyById, getToyByUserUid }
